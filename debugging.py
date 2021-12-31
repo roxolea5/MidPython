@@ -9,9 +9,16 @@ def divisor(num):
 
 
 def run():
-    num = int(input("Ingresa un numero: "))
-    print(divisor(num))
-    print("Terminó el programa")
+    try:
+        num = int(input("Ingresa un numero: "))
+        if num <= 0:
+            raise Exception("Ingresa números mayores a 0")
+        else:
+            print(divisor(num))
+            print("Terminó el programa")
+    except ValueError as ve:
+        print("El valor ingresado no es un número")    
+    
 
 if __name__ == "__main__":
     run()
