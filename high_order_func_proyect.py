@@ -75,9 +75,22 @@ def run():
     all_python_devs = [worker["name"] for worker in DATA if worker["language"]=="python"]
     all_urbvan_workers = [worker["name"] for worker in DATA if worker["organization"]=="Urbvan"]
     adults = list(filter(lambda worker: worker["age"] > 18,DATA))
-    adult = list(map(lambda worker: worker["name"]))
+    adults = list(map(lambda worker: worker["name"], adults))
+    old_people = list(map(lambda worker: {**worker, **{"old": worker["age"] > 70}}, DATA))
 
-    
+    # for worker in old_people:
+    #     print(worker)
+
+    #Reto all_python_devs y all_urbvan_workers usando filter y map combinados
+    python_devs = list(filter(lambda worker: worker["language"]=="python", DATA))
+    python_devs = list(map(lambda worker: worker["name"], python_devs))
+    urbvan_workers = list(filter(lambda worker: worker["organization"]=="Urbvan", DATA))
+    urbvan_workers = list(map(lambda worker: worker["name"], urbvan_workers))
+    my_adults = [worker["name"] for worker in DATA if worker["age"] >= 18]
+    old_people_2 = [{**worker, **{'old': worker['age'] > 70}} for worker in DATA]
+
+    for worker in old_people_2:
+        print(worker)
 
 if __name__ == "__main__":
     run()
